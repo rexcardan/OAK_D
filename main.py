@@ -13,9 +13,9 @@ def main():
     depth_image = camera.getDepthImage()
     cv2.imshow("Depth Image", depth_image)
 
-    # Get inclinometer values
-    inclinometer_values = camera.getInclinometerValues()
-    print("Inclinometer values:", inclinometer_values)
+    # Get accelerometer values (averaged over 1 second)
+    accel_values = camera.getAccelerometerValues()
+    print("Accelerometer values (averaged):", accel_values)
 
     # Wait for a key press before closing
     cv2.waitKey(0)
