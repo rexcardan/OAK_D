@@ -15,13 +15,23 @@ class OAKDCamera:
         self.cam_rgb.setColorOrder(dai.ColorCameraProperties.ColorOrder.RGB)
         self.cam_rgb.setFps(40)
 
-        # Create and set up depth camera nodes (if needed)
+        # Create and set up Mono cameras (left and right)
+        cam_left = self.pipeline.create(dai.node.MonoCamera)
+        cam_left.setBoardSocket(dai.CameraBoardSocket.LEFT)
+        cam_left.setResolution(dai.MonoCameraProperties.SensorResolution.THE_400_P)
+
+        cam_right = self.pipeline.create(dai.node.MonoCamera)
+        cam_right.setBoardSocket(dai.CameraBoardSocket.RIGHT)
+        cam_right.setResolution(dai.MonoCameraProperties.SensorResolution.THE_400_P)
+
+        # Create and set up stereo depth node
         self.stereo = self.pipeline.create(dai.node.StereoDepth)
         self.stereo.setDefaultProfilePreset(dai.node.StereoDepth.PresetMode.HIGH_DENSITY)
         self.stereo.setDepthAlign(dai.CameraBoardSocket.RGB)
-        
-        # Link depth to camera
-        self.cam_rgb.preview.link(self.stereo.inputLeft)
+
+        # Link Mono cameras to stereo depth inputs
+        cam_left.out.link(self.stereo.left)
+        cam_right.out.link(self.stereo.right)
 
         # Create output streams for RGB and depth
         self.xout_rgb = self.pipeline.create(dai.node.XLinkOut)
