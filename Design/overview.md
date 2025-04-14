@@ -4,11 +4,12 @@ The QA Cam project is a library to automate mechanical QA for medical physicists
 
 ## Main Functions
 1. qa_cam.calibrate(): using a preset printed calibration Aruco code pattern, an image is taken with both the color and depth camera and the intrinsic and extrinsic parameters are calculated. 
-2. qa_cam.find_pattern(): using a preset pattern Aruco code print, the 3D coordinates of all of the poinnts of the Aruco patterns and ids are returned
-3. qa_cam.orient(): the find_pattern() method is called, and the coordinates are stored as the "home" position for the session
-4. qa_cam.start_tracking(int s): once every s seconds, a snapshot is taken of the pattern, the coordinates are stored with a timestamp. the result is stored as a json file
-5. qa_cam.stop_tracking(): stop the tracking
-6. qa_cam.get_level_angle(): return the angular (level) reading from the accelerometer of the camera
+2. qa_cam.generate_pattern(): generate a calibration pattern with a specified number of Aruco codes, the size of the pattern, and the distance between the codes. The pattern is saved as a png file.
+3. qa_cam.find_pattern(): using a preset pattern Aruco code print, the 3D coordinates of all of the poinnts of the Aruco patterns and ids are returned
+4. qa_cam.orient(): the find_pattern() method is called, and the coordinates are stored as the "home" position for the session
+5. qa_cam.start_tracking(int s): once every s seconds, a snapshot is taken of the pattern, the coordinates are stored with a timestamp. the result is stored as a json file
+6. qa_cam.stop_tracking(): stop the tracking
+7. qa_cam.get_level_angle(): return the angular (level) reading from the accelerometer of the camera
 
 ### QA Test Capabilities
 1. Couch tracking - x,y,z tracking of pattern attached to couch
