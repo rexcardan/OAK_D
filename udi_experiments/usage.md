@@ -21,10 +21,10 @@ This script uses a camera to detect ArUco markers, track their positions, and ca
 
 ## Usage
 
-1. Navigate to the directory containing the script (`aruco_tracking.py`).
+1. Navigate to the directory containing the script (`udi_movement.py`).
 2. Run the script using Python:
    ```bash
-   python aruco_tracking.py
+   python udi_movement.py
    ```
 
 3. A live feed from the camera will display.
